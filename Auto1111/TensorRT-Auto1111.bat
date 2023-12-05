@@ -41,7 +41,7 @@ IF EXIST git (
 		cd extensions
 		RMDIR /s/q Stable-Diffusion-WebUI-TensorRT
 		RMDIR /s/q Stable-Diffusion-WebUI-TensorRT-main
-		..\git\bin\git.exe clone https://github.com/NVIDIA/Stable-Diffusion-WebUI-TensorRT.git
+		..\git\bin\git.exe clone -b dev https://github.com/NVIDIA/Stable-Diffusion-WebUI-TensorRT.git
 		cd ..
 		set appdata=tmp
 		set userprofile=tmp
@@ -62,7 +62,7 @@ IF EXIST git (
 	cd extensions
 	RMDIR /s/q Stable-Diffusion-WebUI-TensorRT
 	RMDIR /s/q Stable-Diffusion-WebUI-TensorRT-main
-	git clone https://github.com/NVIDIA/Stable-Diffusion-WebUI-TensorRT.git
+	git clone -b dev https://github.com/NVIDIA/Stable-Diffusion-WebUI-TensorRT.git
 	cd ..
 )
 
