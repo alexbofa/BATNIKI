@@ -50,7 +50,8 @@ echo     Доступные команды:
 echo     1. Установить Reactor
 echo     2. Установить FaceSwapLab
 echo     3. Установить оба расширения
-echo     4. Выход
+echo     4. Установить только модуль Insightface
+echo     5. Выход
 echo.
 set /p choice=Введите номер команды и нажмите Enter: 
 
@@ -58,7 +59,8 @@ if '%choice%'=='' goto didntchoose
 if '%choice%'=='1' goto sd-webui-reactor
 if '%choice%'=='2' goto sd-webui-faceswaplab
 if '%choice%'=='3' goto all-extentions
-if '%choice%'=='4' goto exit
+if '%choice%'=='4' goto insightface
+if '%choice%'=='5' goto exit
 
 :didntchoose
 cls
@@ -209,7 +211,7 @@ IF EXIST git (
     echo.
     echo     У вас установлена стандартная версия Stable Diffusion
 	echo     Установка Reactor и FaceSwapLab будет выполнена для стандартной версии
-	echo     GIT и PYTHON должны быть установлены отдельно
+	echo     GIT и PYTHON 3.10 должны быть установлены отдельно
 	echo.
 	echo     Лучше всего поспользоваться Portable Stable Diffusion
 	echo     Скачать: https://github.com/serpotapov/stable-diffusion-portable
@@ -230,6 +232,36 @@ IF EXIST git (
 	git clone https://github.com/Gourieff/sd-webui-reactor.git
     cd ..
 	goto pipinstall
+)
+
+:insightface
+IF EXIST git (
+    IF EXIST python (
+	    echo.
+        echo     У вас установлен Portable Stable Diffusion
+		echo     Установка модуля Insightface будет произведена для Portable
+		echo.
+		pause
+        set appdata=tmp
+        set userprofile=tmp
+        set temp=tmp
+        set path=git\cmd;python;venv\scripts
+		call venv\scripts\activate.bat
+		pip install https://github.com/Gourieff/sd-webui-reactor/raw/main/example/insightface-0.7.3-cp310-cp310-win_amd64.whl
+							)
+				) else (
+    echo.
+    echo     У вас установлена стандартная версия Stable Diffusion
+	echo     Установка модуля Insightface будет выполнена для стандартной версии
+	echo     PYTHON 3.10 должен быть установлен отдельно
+	echo.
+	echo     Лучше всего поспользоваться Portable Stable Diffusion
+	echo     Скачать: https://github.com/serpotapov/stable-diffusion-portable
+	echo     Установка всё равно будет проделана, нажмите Enter
+	echo.
+	pause
+	call venv\scripts\activate.bat
+	pip install https://github.com/Gourieff/sd-webui-reactor/raw/main/example/insightface-0.7.3-cp310-cp310-win_amd64.whl
 )
 
 :pipinstall
