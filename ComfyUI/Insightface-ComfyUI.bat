@@ -1,11 +1,10 @@
 :: by alexbofa
 :: Homepage: https://github.com/alexbofa/BATNIKI
-:: Telegram: @bofacosy
 
 @echo off
-chcp 65001>null
+chcp 65001
 color 0F
-del null
+cls
 
 set APPDATA=tmp
 set USERPROFILE=tmp
@@ -54,24 +53,17 @@ if not exist git (
 	echo.
 	pause
   
-	cd ComfyUI\custom_nodes
-	RMDIR /s/q comfyui-reactor-node
-	RMDIR /s/q comfyui-reactor-node-main
-	..\..\git\cmd\git.exe clone https://github.com/Gourieff/comfyui-reactor-node.git
-	cd ..
-	cd ..
-
 if exist "python_embeded\Scripts\pip3.10.exe" (
     python_embeded\python.exe -m pip install https://github.com/Gourieff/Assets/raw/main/Insightface/insightface-0.7.3-cp310-cp310-win_amd64.whl
+	python_embeded\python.exe -m pip install opencv-python==4.7.0.72
 ) else if exist "python_embeded\Scripts\pip3.11.exe" (
     python_embeded\python.exe -m pip install https://github.com/Gourieff/Assets/raw/main/Insightface/insightface-0.7.3-cp311-cp311-win_amd64.whl
+	python_embeded\python.exe -m pip install opencv-python==4.8.1.78
 ) else (
-    echo     Не найден pip3.10 и pip3.11
+    echo     У вас не установлен Python 3.10 и 3.11, возможно стоит 3.12. Рекомендуется пока пользоваться 3.10 или 3.11
 )
-  python_embeded\python.exe -m pip uninstall -y opencv-python opencv-contrib-python opencv-python-headless onnxruntime-gpu
-  python_embeded\python.exe -m pip install opencv-python==4.7.0.72
+  python_embeded\python.exe -m pip uninstall -y opencv-contrib-python opencv-python-headless onnxruntime-gpu
   python_embeded\python.exe -m pip install onnxruntime==1.15.1
-  python_embeded\python.exe ComfyUI\custom_nodes\comfyui-reactor-node\install.py
   python_embeded\python.exe -m pip install --upgrade pip
   
 RMDIR /s/q pip 
@@ -82,7 +74,6 @@ echo.
 echo     Если есть вопросы/проблемы пишите в issue:
 echo     https://github.com/alexbofa/BATNIKI
 echo.
-echo     Telegram: @bofacosy
 echo     Discord: @alexbofa
 echo.
 pause
