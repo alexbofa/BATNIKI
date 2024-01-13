@@ -1,11 +1,10 @@
 :: by alexbofa
 :: Homepage: https://github.com/alexbofa/BATNIKI
-:: Telegram: @bofacosy
 
 @echo off
-chcp 65001>null
+chcp 65001
 color 0F
-del null
+cls
 
 if not exist venv (
 	color C0
@@ -41,7 +40,7 @@ IF EXIST git (
 		cd extensions
 		RMDIR /s/q Stable-Diffusion-WebUI-TensorRT
 		RMDIR /s/q Stable-Diffusion-WebUI-TensorRT-main
-		..\git\bin\git.exe clone -b dev https://github.com/NVIDIA/Stable-Diffusion-WebUI-TensorRT.git
+		..\git\bin\git.exe clone https://github.com/NVIDIA/Stable-Diffusion-WebUI-TensorRT.git
 		cd ..
 		set appdata=tmp
 		set userprofile=tmp
@@ -62,7 +61,7 @@ IF EXIST git (
 	cd extensions
 	RMDIR /s/q Stable-Diffusion-WebUI-TensorRT
 	RMDIR /s/q Stable-Diffusion-WebUI-TensorRT-main
-	git clone -b dev https://github.com/NVIDIA/Stable-Diffusion-WebUI-TensorRT.git
+	git clone https://github.com/NVIDIA/Stable-Diffusion-WebUI-TensorRT.git
 	cd ..
 )
 
@@ -70,14 +69,14 @@ call venv\scripts\activate.bat
 python -m pip install --upgrade pip
 python -m pip install nvidia-cudnn-cu11==8.9.4.25 --no-cache-dir
 python -m pip install --pre --extra-index-url https://pypi.nvidia.com/ tensorrt==9.0.1.post11.dev4 --no-cache-dir
-python -m pip uninstall -y nvidia-cudnn-cu11
 python -m pip install polygraphy --extra-index-url https://pypi.ngc.nvidia.com
 python -m pip install protobuf==3.20.2
 python -m pip install onnx-graphsurgeon --extra-index-url https://pypi.ngc.nvidia.com
 python -m pip install onnx
 python -m pip install colored
 python -m pip install onnxruntime
-
+python -m pip uninstall -y nvidia-cudnn-cu11
+pause
 cls
 echo.
 echo     Готовченко
@@ -85,7 +84,6 @@ echo.
 echo     Если есть вопросы/проблемы пишите в issue:
 echo     https://github.com/alexbofa/BATNIKI
 echo.
-echo     Telegram: @bofacosy
 echo     Discord: @alexbofa
 echo.
 pause
