@@ -1,6 +1,5 @@
 :: by alexbofa
 :: Homepage: https://github.com/alexbofa/BATNIKI
-:: Telegram: @bofacosy
 
 @echo off
 chcp 65001
@@ -280,7 +279,6 @@ echo.
 echo     Если есть вопросы/проблемы пишите в issue:
 echo     https://github.com/alexbofa/BATNIKI
 echo.
-echo     Telegram: @bofacosy
 echo     Discord: @alexbofa
 echo.
 pause
