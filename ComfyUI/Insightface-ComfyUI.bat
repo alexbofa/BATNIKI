@@ -57,8 +57,10 @@ if exist "python_embeded\Scripts\pip3.10.exe" (
     python_embeded\python.exe -m pip install https://github.com/Gourieff/Assets/raw/main/Insightface/insightface-0.7.3-cp310-cp310-win_amd64.whl
 ) else if exist "python_embeded\Scripts\pip3.11.exe" (
     python_embeded\python.exe -m pip install https://github.com/Gourieff/Assets/raw/main/Insightface/insightface-0.7.3-cp311-cp311-win_amd64.whl
-	) else (
-    echo     У вас не установлен Python 3.10 и 3.11, возможно стоит 3.12. Рекомендуется пока пользоваться 3.10 или 3.11
+) else if exist "python_embeded\Scripts\pip3.12.exe" (
+    python_embeded\python.exe -m pip install https://github.com/Gourieff/Assets/raw/main/Insightface/insightface-0.7.3-cp312-cp312-win_amd64.whl
+) else (
+    echo У тебя что-то не так с python_embeded, советую перекачать заново и повторить действия
 )
   python_embeded\python.exe -m pip uninstall -y opencv-contrib-python opencv-python-headless onnxruntime-gpu
   python_embeded\python.exe -m pip install opencv-python==4.8.1.78
