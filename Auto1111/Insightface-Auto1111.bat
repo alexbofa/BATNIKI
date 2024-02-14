@@ -246,7 +246,7 @@ IF EXIST git (
         set temp=tmp
         set path=git\cmd;python;venv\scripts
 		call venv\scripts\activate.bat
-		pip install https://github.com/Gourieff/sd-webui-reactor/raw/main/example/insightface-0.7.3-cp310-cp310-win_amd64.whl
+		pip install https://github.com/Gourieff/Assets/raw/main/Insightface/insightface-0.7.3-cp310-cp310-win_amd64.whl
 							)
 				) else (
     echo.
@@ -260,13 +260,13 @@ IF EXIST git (
 	echo.
 	pause
 	call venv\scripts\activate.bat
-	pip install https://github.com/Gourieff/sd-webui-reactor/raw/main/example/insightface-0.7.3-cp310-cp310-win_amd64.whl
+	pip install https://github.com/Gourieff/Assets/raw/main/Insightface/insightface-0.7.3-cp310-cp310-win_amd64.whl
 )
 
 :pipinstall
 call venv\scripts\activate.bat
 pip uninstall -y onnx onnxruntime onnxruntime-gpu onnxruntime-silicon
-pip install https://github.com/Gourieff/sd-webui-reactor/raw/main/example/insightface-0.7.3-cp310-cp310-win_amd64.whl
+pip install https://github.com/Gourieff/Assets/raw/main/Insightface/insightface-0.7.3-cp310-cp310-win_amd64.whl
 pip install open-clip-torch==2.15.0
 python.exe -m pip install --upgrade pip
 goto finish
