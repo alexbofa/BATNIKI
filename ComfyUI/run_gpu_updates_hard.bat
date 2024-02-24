@@ -64,6 +64,7 @@ cd /d "%~dp0"
 
 cd ComfyUI
 call :colored ComfyUI-Updates Red
+git clean -f -d
 git reset --hard
 git pull origin master
 cd ..
@@ -71,6 +72,7 @@ echo ---
 
 cd ComfyUI\custom_nodes
 call :colored custom_nodes Blue
+git clean -f -d
 git reset --hard
 git pull
 echo ---
@@ -78,8 +80,9 @@ echo ---
 for /D %%i in (*) do (
     call :colored %%i Green
     cd "%%i"
+	git clean -f -d
 	git reset --hard
-    git pull
+    	git pull
 	echo ---
     cd ..
 )
