@@ -53,17 +53,19 @@ if not exist git (
 	echo.
 	pause
   
-if exist "python_embeded\Scripts\pip3.10.exe" (
+if exist "python_embeded\python310.dll" (
     python_embeded\python.exe -m pip install https://github.com/Gourieff/Assets/raw/main/Insightface/insightface-0.7.3-cp310-cp310-win_amd64.whl
     python_embeded\python.exe -m pip install opencv-python==4.7.0.72
-) else if exist "python_embeded\Scripts\pip3.11.exe" (
+) else if exist "python_embeded\python311.dll" (
     python_embeded\python.exe -m pip install https://github.com/Gourieff/Assets/raw/main/Insightface/insightface-0.7.3-cp311-cp311-win_amd64.whl
     python_embeded\python.exe -m pip install opencv-python==4.8.1.78
-) else if exist "python_embeded\Scripts\pip3.12.exe" (
+) else if exist "python_embeded\python312.dll" (
     python_embeded\python.exe -m pip install https://github.com/Gourieff/Assets/raw/main/Insightface/insightface-0.7.3-cp312-cp312-win_amd64.whl
     python_embeded\python.exe -m pip install opencv-python==4.8.1.78
 ) else (
+	cls
     echo У тебя что-то не так с python_embeded, советую перекачать заново и повторить действия
+	pause
 )
   python_embeded\python.exe -m pip uninstall -y opencv-contrib-python opencv-python-headless onnxruntime-gpu
   python_embeded\python.exe -m pip install onnxruntime==1.15.1
