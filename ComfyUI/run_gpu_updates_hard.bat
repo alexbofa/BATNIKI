@@ -40,6 +40,7 @@ echo.
 set appdata=tmp
 set userprofile=tmp
 set temp=tmp
+set YOLO_CONFIG_DIR=tmp\YOLO_CONFIG_DIR\
 set path=%~dp0git\cmd;python_embeded
 set git=%~dp0git\cmd\git.exe
 
