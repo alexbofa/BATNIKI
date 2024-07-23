@@ -53,7 +53,7 @@ if not exist git (
 	echo.
 	pause
   
-    python_embeded\python.exe -m pip uninstall -y opencv-contrib-python opencv-python-headless onnxruntime-gpu
+    python_embeded\python.exe -m pip uninstall -y opencv-contrib-python opencv-python-headless onnxruntime-gpu onnxruntime
 if exist "python_embeded\python310.dll" (
     python_embeded\python.exe -m pip install https://github.com/Gourieff/Assets/raw/main/Insightface/insightface-0.7.3-cp310-cp310-win_amd64.whl
     python_embeded\python.exe -m pip install opencv-python==4.7.0.72
