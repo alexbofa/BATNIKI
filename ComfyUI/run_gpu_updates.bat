@@ -13,7 +13,7 @@ echo     Переложи run_gpu_updates.bat
 echo     Рядом с файлом run_nvidia_gpu.bat и python_embeded
 echo.
 echo     Если такого файла и папки нет, то установи Portable ComfyUI 
-echo     ComfyUI_windows_portable_nvidia_cu121_or_cpu.7z    
+echo     ComfyUI_windows_portable_nvidia.7z 
 echo     https://github.com/comfyanonymous/ComfyUI/releases/
 echo.
 pause
@@ -44,49 +44,59 @@ set YOLO_CONFIG_DIR=tmp\YOLO_CONFIG_DIR\
 set path=%~dp0git\cmd;python_embeded
 set git=%~dp0git\cmd\git.exe
 
-del /q "tmp\tmp*" >nul 2>nul & del /q "tmp\gradio\*.*" >nul 2>nul & rd /s /q "pip\cache" >nul 2>nul & for /d %%x in (tmp\tmp*,tmp\pip*,tmp\gradio\*) do (rd /s /q "%%x" 2>nul || ("%%x" && exit /b 1))
-
-pushd "%~dp0"
-
-cd /d ComfyUI\web\extensions
-for /d %%i in (*) do (
-    if /i not "%%i"=="core" (
-        rd /s /q "%%i"
+:: Удаление временных файлов (строго в папке tmp)
+if exist tmp (
+    del /q "tmp\tmp*" >nul 2>nul
+    del /q "tmp\gradio\*.*" >nul 2>nul
+    for /d %%x in (tmp\tmp*,tmp\pip*,tmp\gradio\*) do (
+        if exist "%%x" rd /s /q "%%x"
     )
-	)
+)
+if exist pip\cache (
+    rd /s /q "pip\cache"
 )
 
+:: Переход в директорию расширений
+pushd "%~dp0ComfyUI\web\extensions"
+if exist "%cd%" (
+    for /d %%i in (*) do (
+        if /i not "%%i"=="core" (
+            rd /s /q "%%i"
+        )
+    )
 call :colored web\extentions Yellow
 echo The folders is cleaned
 echo ---
 popd
 
-cd /d "%~dp0"
-
-cd ComfyUI
+:: Обновление репозитория ComfyUI
+pushd "%~dp0ComfyUI"
 call :colored ComfyUI-Updates Red
 git pull origin master
-cd ..
+popd
 echo ---
 
-cd ComfyUI\custom_nodes
+:: Обновление custom_nodes
+pushd "%~dp0ComfyUI\custom_nodes"
 call :colored custom_nodes Blue
-git pull
+for /d %%i in (*) do (
+    if exist "%%i\.git" (
+        pushd "%%i"
+        call :colored %%i Green
+        git pull
+        echo ---
+        popd
+    )
+)
+popd
 echo ---
 
-for /D %%i in (*) do (
-    call :colored %%i Green
-    cd "%%i"
-    git pull
-	echo ---
-    cd ..
-)
-
+:: Запуск основного скрипта
 cd /d "%~dp0"
-
 .\python_embeded\python.exe -s ComfyUI\main.py --windows-standalone-build
 
 @pause
+exit /b
 
 :colored
 %Windir%\System32\WindowsPowerShell\v1.0\Powershell.exe write-host -foregroundcolor %2 %1
