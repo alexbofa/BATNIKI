@@ -64,9 +64,10 @@ if exist "%cd%" (
             rd /s /q "%%i"
         )
     )
-call :colored web\extentions Yellow
-echo The folders is cleaned
-echo ---
+    call :colored web\extensions Yellow
+    echo The folders are cleaned
+    echo ---
+)
 popd
 
 :: Обновление репозитория ComfyUI
@@ -99,4 +100,5 @@ cd /d "%~dp0"
 exit /b
 
 :colored
-%Windir%\System32\WindowsPowerShell\v1.0\Powershell.exe write-host -foregroundcolor %2 %1
+%Windir%\System32\WindowsPowerShell\v1.0\powershell.exe -Command "Write-Host '%~1' -ForegroundColor %2"
+exit /b
