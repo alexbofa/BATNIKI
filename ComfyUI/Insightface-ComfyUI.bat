@@ -63,6 +63,9 @@ if exist "python_embeded\python310.dll" (
 ) else if exist "python_embeded\python312.dll" (
     python_embeded\python.exe -m pip install https://github.com/Gourieff/Assets/raw/main/Insightface/insightface-0.7.3-cp312-cp312-win_amd64.whl
     python_embeded\python.exe -m pip install opencv-python==4.8.1.78
+) else if exist "python_embeded\python313.dll" (
+    python_embeded\python.exe -m pip install https://github.com/Gourieff/Assets/raw/main/Insightface/insightface-0.7.3-cp313-cp313-win_amd64.whl
+    python_embeded\python.exe -m pip install opencv-python==4.8.1.78
 ) else (
 	cls
     echo У тебя что-то не так с python_embeded, советую перекачать заново и повторить действия
@@ -83,3 +86,4 @@ echo.
 echo     Discord: @alexbofa
 echo.
 pause
+
