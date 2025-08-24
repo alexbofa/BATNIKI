@@ -164,6 +164,8 @@ if exist "python_embeded\Scripts\pip3.10.exe" (
     python_embeded\python.exe -m pip install https://github.com/Gourieff/Assets/raw/main/Insightface/insightface-0.7.3-cp311-cp311-win_amd64.whl
 ) else if exist "python_embeded\Scripts\pip3.12.exe" (
     python_embeded\python.exe -m pip install https://github.com/Gourieff/Assets/raw/main/Insightface/insightface-0.7.3-cp312-cp312-win_amd64.whl
+) else if exist "python_embeded\Scripts\pip3.13.exe" (
+    python_embeded\python.exe -m pip install https://github.com/Gourieff/Assets/raw/main/Insightface/insightface-0.7.3-cp313-cp313-win_amd64.whl
 ) else (
 	color C0
 	cls
@@ -308,4 +310,5 @@ pause
 goto start
 
 :colored
+
 %Windir%\System32\WindowsPowerShell\v1.0\Powershell.exe write-host -foregroundcolor %2 %1
